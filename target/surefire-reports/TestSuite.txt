@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 54.186 sec <<< FAILURE! - in TestSuite
+checkFriendsNumberTest(com.facebook.tests.FacebookTest)  Time elapsed: 25.987 sec  <<< FAILURE!
+java.lang.AssertionError: expected [134] but found [135]
+	at com.facebook.tests.FacebookTest.checkFriendsNumberTest(FacebookTest.java:44)
+
