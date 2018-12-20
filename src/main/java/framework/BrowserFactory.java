@@ -1,7 +1,6 @@
 package framework;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -32,18 +31,11 @@ public class BrowserFactory {
 
             case ANDROID:
 
-//                WebDriverManager.chromedriver().version("2.30").setup();
-
                 capabilities.setCapability("deviceName", "emulator-5554");
                 capabilities.setCapability("platformName","Android");
                 capabilities.setCapability("browserName", "Chrome");
                 capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
-//                try {
-//                    driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-//                    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-//
-//                } catch (MalformedURLException e) {}
                 startAppiumDriver(capabilities);
 
                 break;
@@ -51,8 +43,8 @@ public class BrowserFactory {
             case iOS:
 
                 capabilities.setCapability("platformName", "iOS");
-                capabilities.setCapability("deviceName", "iPhone XR");
-                capabilities.setCapability("udid", "E63A34A1-D665-4CA2-A1DA-02CC5E59B1F3");
+                capabilities.setCapability("deviceName", Config.iosDeviceName);
+                capabilities.setCapability("udid", Config.iosUdid);
                 capabilities.setCapability("automationName", "XCUITest");
                 capabilities.setCapability("browserName", "Safari");
                 capabilities.setCapability("nativeWebTap", true);
@@ -70,7 +62,7 @@ public class BrowserFactory {
 
     private static void startAppiumDriver(DesiredCapabilities capabilities) {
         try {
-            driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+            driver = new AppiumDriver(new URL(Config.appiumURL), capabilities);
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         } catch (MalformedURLException e) {}
